@@ -92,7 +92,7 @@ self.analysis_graph = image_base64
 
 
 # Pastel
-```
+```python
 # Crear la figura y los ejes
 fig, ax = plt.subplots()
 
