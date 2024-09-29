@@ -89,3 +89,41 @@ image_base64 = base64.b64encode(image_png).decode('utf-8')
 buffer.close()
 self.analysis_graph = image_base64
 ```
+
+
+# Pastel
+```
+# Crear la figura y los ejes
+fig, ax = plt.subplots()
+
+# Definir los datos
+
+sale_ids = self.env['sale.order'].search([])
+sale_arrary_name = []
+sale_arrary_amount_total = []
+labels = []
+
+for sale in sale_ids:
+    labels.append(sale.name)
+    sale_arrary_amount_total.append(sale.amount_total)
+        
+
+# Crear el gráfico de barras
+ax.pie(sale_arrary_amount_total, labels=labels)
+
+# Agregar etiquetas y título
+ax.set_title('Ordenes de Ventas')
+ax.legend(title='Ordenes de Venta')
+ax.grid()
+
+
+# Guardar la imagen en un buffer de memoria
+buffer = BytesIO()
+plt.savefig(buffer, format='png')  # Guardar la imagen en el buffer en formato PNG
+plt.close(fig)
+buffer.seek(0)  # Reiniciar el puntero del buffer
+image_png = buffer.getvalue()
+image_base64 = base64.b64encode(image_png).decode('utf-8')
+buffer.close()
+self.analysis_graph = image_base64
+```
